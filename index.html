@@ -4,14 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Motocykle Husqvarna</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <style>
-    /* Slider */
     .slider {
       position: relative;
       overflow: hidden;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
     }
     .slides {
       display: flex;
@@ -27,7 +24,7 @@
       height: auto;
       cursor: zoom-in;
       transition: transform 0.3s ease;
-      border-radius: 0.75rem;
+      border-radius: 0.5rem;
     }
     .slide img.zoomed {
       cursor: zoom-out;
@@ -39,127 +36,36 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.5);
       color: white;
       border: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      border-radius: 0.5rem;
+      border-radius: 0.375rem;
       user-select: none;
       z-index: 20;
       transition: background 0.3s;
-      font-weight: 700;
-      font-size: 1.2rem;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .arrow-btn:hover {
       background: rgba(0,0,0,0.7);
     }
     .arrow-left {
-      left: 1rem;
+      left: 0.5rem;
     }
     .arrow-right {
-      right: 1rem;
-    }
-
-    /* Zakładki - karty */
-    .tab-card img {
-      object-fit: cover;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      border-radius: 0.75rem;
-      transition: transform 0.3s ease;
-    }
-    .tab-card:hover img {
-      transform: scale(1.05);
-    }
-    .tab-card {
-      cursor: pointer;
-      background: white;
-      border-radius: 0.75rem;
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
-      transition: box-shadow 0.3s ease;
-      padding: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .tab-card:hover {
-      box-shadow: 0 12px 30px rgb(0 0 0 / 0.15);
-    }
-
-    /* Tab content */
-    .tab-content {
-      display: none;
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 12px 35px rgb(0 0 0 / 0.1);
-      margin-bottom: 4rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.4s ease forwards;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Mniejsze zdjęcia w sliderze (Galeria) */
-    .slider img {
-      max-height: 320px;
-      object-fit: contain;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .tab-content {
-        padding: 1.5rem 1rem;
-      }
-      .slider img {
-        max-height: 260px;
-      }
-    }
-    @media (max-width: 640px) {
-      .tab-card img {
-        aspect-ratio: 3 / 2;
-      }
-      .slider img {
-        max-height: 200px;
-      }
+      right: 0.5rem;
     }
   </style>
   <script>
-    function showTab(tabId, clickedElement) {
-      // Ukryj wszystkie
+    function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => {
-        tab.classList.remove('active');
+        tab.style.display = 'none';
       });
-
-      // Pokaż wybrany
-      const selectedTab = document.getElementById(tabId);
-      selectedTab.classList.add('active');
-
-      // Płynne scrollowanie do tab
-      selectedTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Usuń aktywność z innych kart
-      document.querySelectorAll('.tab-card').forEach(card => {
-        card.classList.remove('active-tab');
-      });
-      // Dodaj aktywność do klikniętej karty
-      if(clickedElement) clickedElement.classList.add('active-tab');
+      document.getElementById(tabId).style.display = 'block';
     }
 
+    // Slider logic
     function initSliders() {
       const sliders = document.querySelectorAll('.slider');
       sliders.forEach(slider => {
@@ -171,7 +77,7 @@
         const btnNext = slider.querySelector('.arrow-right');
 
         function updateSlider() {
-          slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+          slidesContainer.style.transform = translateX(-${currentIndex * 100}%);
           // Reset zoom on slide change
           slides.forEach(slide => {
             const img = slide.querySelector('img');
@@ -196,6 +102,7 @@
             if (img.classList.contains('zoomed')) {
               img.classList.remove('zoomed');
             } else {
+              // Remove zoom from all images in this slider
               slides.forEach(s => s.querySelector('img').classList.remove('zoomed'));
               img.classList.add('zoomed');
             }
@@ -207,134 +114,192 @@
     }
 
     window.onload = () => {
-      // Pokaż pierwszą kartę i tab
-      showTab('tab1', document.querySelector('.tab-card'));
+      showTab('tab1');
       initSliders();
     };
   </script>
 </head>
-<body class="bg-gray-50 font-sans leading-relaxed text-gray-800">
+<body class="bg-gray-100 font-sans">
   <div class="max-w-6xl mx-auto p-4">
-    <h1 class="text-4xl font-extrabold mb-8 text-center tracking-wide text-gray-900">Motocykle Husqvarna na Sprzedaż</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">Motocykle Husqvarna na Sprzedaż</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-      <!-- Zakładki -->
-      <div onclick="showTab('tab1', this)" class="tab-card" role="button" tabindex="0" aria-label="Pokaż szczegóły FC 250 2015">
-        <img src="galeria/glowne/pierwszeglowne.png" alt="Husqvarna FC 250 2015" />
-        <h2 class="font-semibold text-lg mt-3">FC 250 (2015)</h2>
-        <p class="text-gray-600">7700zł - 45 000 kr</p>
+      <!-- Tabs List -->
+      <div onclick="showTab('tab1')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="galeria/glowne/pierwszeglowne.png" alt="Husqvarna FC 250 2015" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FC 250 (2015)</h2>
+        <p>7700zł - 45 000 kr</p>
       </div>
 
-      <div onclick="showTab('tab2', this)" class="tab-card" role="button" tabindex="0" aria-label="Pokaż szczegóły FC 250 2018">
-        <img src="galeria/glowne/drugieglowne.png" alt="Husqvarna FC 250 2018" />
-        <h2 class="font-semibold text-lg mt-3">FC 250 (2018)</h2>
-        <p class="text-gray-600">7700zł - 45 000 kr</p>
+      <div onclick="showTab('tab2')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="galeria/glowne/drugieglowne.png" alt="Husqvarna FC 250 2018" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FC 250 (2018)</h2>
+        <p>7700zł - 45 000 kr</p>
       </div>
 
-      <div onclick="showTab('tab3', this)" class="tab-card" role="button" tabindex="0" aria-label="Pokaż szczegóły FE 250 2020">
-        <img src="galeria/glowne/trzecieglowne.png" alt="Husqvarna FE 250 2020" />
-        <h2 class="font-semibold text-lg mt-3">FE 250 (2020)</h2>
-        <p class="text-gray-600">9700zł - 55 000 kr</p>
+      <div onclick="showTab('tab3')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="galeria/glowne/trzecieglowne.png" alt="Husqvarna FE 250 2020" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2020)</h2>
+        <p>12060zł - 70 631 kr</p>
       </div>
 
-      <div onclick="showTab('tab4', this)" class="tab-card" role="button" tabindex="0" aria-label="Pokaż szczegóły TE 150i 2016">
-        <img src="galeria/glowne/czwarteglowne.png" alt="Husqvarna TE 150i 2016" />
-        <h2 class="font-semibold text-lg mt-3">TE 150i (2016)</h2>
-        <p class="text-gray-600">6700zł - 39 000 kr</p>
+      <div onclick="showTab('tab4')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="galeria/glowne/czwarteglowne.png" alt="Husqvarna FE 250 2017" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2017)</h2>
+        <p>7700zł - 45 000 kr</p>
       </div>
 
-      <div onclick="showTab('tab5', this)" class="tab-card" role="button" tabindex="0" aria-label="Pokaż szczegóły TE 300i 2022">
-        <img src="galeria/glowne/piateglowne.png" alt="Husqvarna TE 300i 2022" />
-        <h2 class="font-semibold text-lg mt-3">TE 300i (2022)</h2>
-        <p class="text-gray-600">12900zł - 73 000 kr</p>
+      <div onclick="showTab('tab5')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="galeria/glowne/piateglowne.png" alt="Husqvarna FE 250 2015" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2015)</h2>
+        <p>10355zł - 60 631 kr</p>
       </div>
     </div>
 
-    <!-- Zawartość kart -->
-    <div id="tab1" class="tab-content" role="tabpanel" aria-labelledby="tab1">
-      <h2 class="text-3xl font-bold mb-4">Husqvarna FC 250 (2015)</h2>
-      <p class="mb-4">Motocykl w stanie bardzo dobrym, silnik w pełni sprawny, idealny dla średnio zaawansowanych jeźdźców.</p>
+    <!-- Tab Content -->
 
-      <div class="slider mb-8">
-        <button class="arrow-btn arrow-left" aria-label="Poprzednie zdjęcie">&#10094;</button>
+    <!-- Tab 1 -->
+    <div id="tab1" class="tab-content hidden bg-white rounded-lg p-6 shadow" style="display:none;">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FC 250 (2015)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Nie</strong></p>
+      <p class="mb-4">Husqvarna FC 250<br>Dobry motocykl używany na torze – na sprzedaż. Regularnie wykonywano wymiany oleju i serwisy. Dodatkowe plastiki w zestawie. 2 tryby mocy. Elektryczny starter. Motocykl jest w dobrym stanie i był dobrze utrzymany. Skontaktuj się w razie pytań. Otwartość na oferty cenowe oraz możliwość zamiany na motocykl A2 lub skuter wodny Seadoo.</p>
+      <a href="https://www.finn.no/mobility/item/408344590" class="text-blue-600 underline mb-4 inline-block">Zobacz ogłoszenie</a>
+
+      <!-- Slider for tab 1 -->
+      <div class="slider relative max-w-4xl mx-auto mt-4">
+        <button class="arrow-btn arrow-left">&lt;</button>
         <div class="slides">
-          <div class="slide"><img src="galeria/fc2015/1.jpg" alt="FC 250 2015 - zdjęcie 1" /></div>
-          <div class="slide"><img src="galeria/fc2015/2.jpg" alt="FC 250 2015 - zdjęcie 2" /></div>
-          <div class="slide"><img src="galeria/fc2015/3.jpg" alt="FC 250 2015 - zdjęcie 3" /></div>
+          <div class="slide"><img src="galeria/zakladka1/1.png" alt="Zdjęcie 1"></div>
+          <div class="slide"><img src="galeria/zakladka1/2.png" alt="Zdjęcie 2"></div>
+          <div class="slide"><img src="galeria/zakladka1/3.png" alt="Zdjęcie 3"></div>
+          <div class="slide"><img src="galeria/zakladka1/4.png" alt="Zdjęcie 4"></div>
+          <div class="slide"><img src="galeria/zakladka1/5.png" alt="Zdjęcie 5"></div>
+          <div class="slide"><img src="galeria/zakladka1/6.png" alt="Zdjęcie 6"></div>
+          <div class="slide"><img src="galeria/zakladka1/7.png" alt="Zdjęcie 7"></div>
+          <div class="slide"><img src="galeria/zakladka1/8.png" alt="Zdjęcie 8"></div>
+          <div class="slide"><img src="galeria/zakladka1/9.png" alt="Zdjęcie 9"></div>
+          <div class="slide"><img src="galeria/zakladka1/10.png" alt="Zdjęcie 10"></div>
+          <div class="slide"><img src="galeria/zakladka1/11.png" alt="Zdjęcie 11"></div>
+          <div class="slide"><img src="galeria/zakladka1/12.png" alt="Zdjęcie 12"></div>
+          <div class="slide"><img src="galeria/zakladka1/13.png" alt="Zdjęcie 13"></div>
+          <div class="slide"><img src="galeria/zakladka1/14.png" alt="Zdjęcie 14"></div>
         </div>
-        <button class="arrow-btn arrow-right" aria-label="Następne zdjęcie">&#10095;</button>
+        <button class="arrow-btn arrow-right">&gt;</button>
       </div>
-
-      <p><strong>Cena:</strong> 7700 zł (45 000 kr)</p>
     </div>
 
-    <div id="tab2" class="tab-content" role="tabpanel" aria-labelledby="tab2">
-      <h2 class="text-3xl font-bold mb-4">Husqvarna FC 250 (2018)</h2>
-      <p class="mb-4">Motocykl z lekkimi śladami użytkowania, przygotowany do dalszej jazdy bez dodatkowych inwestycji.</p>
+    <!-- Tab 2 -->
+    <div id="tab2" class="tab-content hidden bg-white rounded-lg p-6 shadow" style="display:none;">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FC 250 (2018)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Nie</strong></p>
+      <p class="mb-4">Dobrze utrzymany motocykl. Używany do zabawy i jazdy rekreacyjnej we własnym lesie i na pastwiskach. Myty po każdej jeździe. Wymiana oleju i filtra oleju co 5 godzin. Starannie dbano o wymianę filtra powietrza. Łatwy do odpalenia dzięki elektrycznemu starterowi i dobrze pracuje. Motocykl w całości, zadbany i w dobrym stanie. Zawsze przechowywany w garażu. Zamontowany sportowy układ wydechowy. Dodatkowy filtr powietrza w zestawie.</p>
+      <a href="https://www.finn.no/mobility/item/403541191" class="text-blue-600 underline mb-4 inline-block">Zobacz ogłoszenie</a>
 
-      <div class="slider mb-8">
-        <button class="arrow-btn arrow-left" aria-label="Poprzednie zdjęcie">&#10094;</button>
+      <!-- Slider for tab 2 -->
+      <div class="slider relative max-w-4xl mx-auto mt-4">
+        <button class="arrow-btn arrow-left">&lt;</button>
         <div class="slides">
-          <div class="slide"><img src="galeria/fc2018/1.jpg" alt="FC 250 2018 - zdjęcie 1" /></div>
-          <div class="slide"><img src="galeria/fc2018/2.jpg" alt="FC 250 2018 - zdjęcie 2" /></div>
-          <div class="slide"><img src="galeria/fc2018/3.jpg" alt="FC 250 2018 - zdjęcie 3" /></div>
+          <div class="slide"><img src="galeria/zakladka2/1.png" alt="Zdjęcie 1"></div>
+          <div class="slide"><img src="galeria/zakladka2/2.png" alt="Zdjęcie 2"></div>
+          <div class="slide"><img src="galeria/zakladka2/3.png" alt="Zdjęcie 3"></div>
+          <div class="slide"><img src="galeria/zakladka2/4.png" alt="Zdjęcie 4"></div>
+          <div class="slide"><img src="galeria/zakladka2/5.png" alt="Zdjęcie 5"></div>
+          <div class="slide"><img src="galeria/zakladka2/6.png" alt="Zdjęcie 6"></div>
+          <div class="slide"><img src="galeria/zakladka2/7.png" alt="Zdjęcie 7"></div>
         </div>
-        <button class="arrow-btn arrow-right" aria-label="Następne zdjęcie">&#10095;</button>
+        <button class="arrow-btn arrow-right">&gt;</button>
       </div>
-
-      <p><strong>Cena:</strong> 7700 zł (45 000 kr)</p>
     </div>
 
-    <div id="tab3" class="tab-content" role="tabpanel" aria-labelledby="tab3">
-      <h2 class="text-3xl font-bold mb-4">Husqvarna FE 250 (2020)</h2>
-      <p class="mb-4">Najnowszy model z zaawansowaną elektroniką, idealny do offroadu i długich wypraw.</p>
+    <!-- Tab 3 -->
+    <div id="tab3" class="tab-content hidden bg-white rounded-lg p-6 shadow" style="display:none;">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2020)</h2>
+      <p class="mb-2">12060zł - 70 631 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Rozważam sprzedaż mojej Husqvarny FE 250 z 2021 roku i przesiadkę na Stark Varg. Motocykl był używany przez początkującego do jazdy enduro, ale w ostatnim roku stał głównie nieużywany. Przyczepa w cenie. Zadbany, niezawodny, gotowy do jazdy. Wiele ulepszeń i serwis wykonany w 2024 roku.</p>
+      <a href="https://www.finn.no/mobility/item/404987416" class="text-blue-600 underline mb-4 inline-block">Zobacz ogłoszenie</a>
 
-      <div class="slider mb-8">
-        <button class="arrow-btn arrow-left" aria-label="Poprzednie zdjęcie">&#10094;</button>
+      <!-- Slider for tab 3 -->
+      <div class="slider relative max-w-4xl mx-auto mt-4">
+        <button class="arrow-btn arrow-left">&lt;</button>
         <div class="slides">
-          <div class="slide"><img src="galeria/fe2020/1.jpg" alt="FE 250 2020 - zdjęcie 1" /></div>
-          <div class="slide"><img src="galeria/fe2020/2.jpg" alt="FE 250 2020 - zdjęcie 2" /></div>
-          <div class="slide"><img src="galeria/fe2020/3.jpg" alt="FE 250 2020 - zdjęcie 3" /></div>
+          <div class="slide"><img src="galeria/zakladka3/1.png" alt="Zdjęcie 1"></div>
+          <div class="slide"><img src="galeria/zakladka3/2.png" alt="Zdjęcie 2"></div>
+          <div class="slide"><img src="galeria/zakladka3/3.png" alt="Zdjęcie 3"></div>
+          <div class="slide"><img src="galeria/zakladka3/4.png" alt="Zdjęcie 4"></div>
+          <div class="slide"><img src="galeria/zakladka3/5.png" alt="Zdjęcie 5"></div>
+          <div class="slide"><img src="galeria/zakladka3/6.png" alt="Zdjęcie 6"></div>
+          <div class="slide"><img src="galeria/zakladka3/7.png" alt="Zdjęcie 7"></div>
+          <div class="slide"><img src="galeria/zakladka3/8.png" alt="Zdjęcie 8"></div>
+          <div class="slide"><img src="galeria/zakladka3/9.png" alt="Zdjęcie 9"></div>
+          <div class="slide"><img src="galeria/zakladka3/10.png" alt="Zdjęcie 10"></div>
+          <div class="slide"><img src="galeria/zakladka3/11.png" alt="Zdjęcie 11"></div>
+          <div class="slide"><img src="galeria/zakladka3/12.png" alt="Zdjęcie 12"></div>
+          <div class="slide"><img src="galeria/zakladka3/13.png" alt="Zdjęcie 13"></div>
+          <div class="slide"><img src="galeria/zakladka3/14.png" alt="Zdjęcie 14"></div>
+          <div class="slide"><img src="galeria/zakladka3/15.png" alt="Zdjęcie 15"></div>
+          <div class="slide"><img src="galeria/zakladka3/16.png" alt="Zdjęcie 16"></div>
+          <div class="slide"><img src="galeria/zakladka3/17.png" alt="Zdjęcie 17"></div>
         </div>
-        <button class="arrow-btn arrow-right" aria-label="Następne zdjęcie">&#10095;</button>
+        <button class="arrow-btn arrow-right">&gt;</button>
       </div>
-
-      <p><strong>Cena:</strong> 9700 zł (55 000 kr)</p>
     </div>
 
-    <div id="tab4" class="tab-content" role="tabpanel" aria-labelledby="tab4">
-      <h2 class="text-3xl font-bold mb-4">Husqvarna TE 150i (2016)</h2>
-      <p class="mb-4">Lekki motocykl enduro, świetny do technicznych tras i młodszych użytkowników.</p>
+    <!-- Tab 4 -->
+    <div id="tab4" class="tab-content hidden bg-white rounded-lg p-6 shadow" style="display:none;">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2017)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Motocykl po liftingu z 2017 roku. Silnik i zawieszenie w dobrym stanie, wymienione oleje i filtry, nowe opony. Komplet dokumentów. W zestawie dodatkowe wyposażenie.</p>
+      <a href="https://www.finn.no/mobility/item/400123456" class="text-blue-600 underline mb-4 inline-block">Zobacz ogłoszenie</a>
 
-      <div class="slider mb-8">
-        <button class="arrow-btn arrow-left" aria-label="Poprzednie zdjęcie">&#10094;</button>
+      <!-- Slider for tab 4 -->
+      <div class="slider relative max-w-4xl mx-auto mt-4">
+        <button class="arrow-btn arrow-left">&lt;</button>
         <div class="slides">
-          <div class="slide"><img src="galeria/te2016/1.jpg" alt="TE 150i 2016 - zdjęcie 1" /></div>
-          <div class="slide"><img src="galeria/te2016/2.jpg" alt="TE 150i 2016 - zdjęcie 2" /></div>
-          <div class="slide"><img src="galeria/te2016/3.jpg" alt="TE 150i 2016 - zdjęcie 3" /></div>
+          <div class="slide"><img src="galeria/zakladka4/1.png" alt="Zdjęcie 1"></div>
+          <div class="slide"><img src="galeria/zakladka4/2.png" alt="Zdjęcie 2"></div>
+          <div class="slide"><img src="galeria/zakladka4/3.png" alt="Zdjęcie 3"></div>
+          <div class="slide"><img src="galeria/zakladka4/4.png" alt="Zdjęcie 4"></div>
+          <div class="slide"><img src="galeria/zakladka4/5.png" alt="Zdjęcie 5"></div>
+          <div class="slide"><img src="galeria/zakladka4/6.png" alt="Zdjęcie 6"></div>
+          <div class="slide"><img src="galeria/zakladka4/7.png" alt="Zdjęcie 7"></div>
+          <div class="slide"><img src="galeria/zakladka4/8.png" alt="Zdjęcie 8"></div>
         </div>
-        <button class="arrow-btn arrow-right" aria-label="Następne zdjęcie">&#10095;</button>
+        <button class="arrow-btn arrow-right">&gt;</button>
       </div>
-
-      <p><strong>Cena:</strong> 6700 zł (39 000 kr)</p>
     </div>
 
-    <div id="tab5" class="tab-content" role="tabpanel" aria-labelledby="tab5">
-      <h2 class="text-3xl font-bold mb-4">Husqvarna TE 300i (2022)</h2>
-      <p class="mb-4">Najnowszy model z bezpośrednim wtryskiem paliwa i nowoczesną konstrukcją.</p>
+    <!-- Tab 5 -->
+    <div id="tab5" class="tab-content hidden bg-white rounded-lg p-6 shadow" style="display:none;">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2015)</h2>
+      <p class="mb-2">10355zł - 60 631 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Motocykl w bardzo dobrym stanie technicznym i wizualnym. Wszystkie serwisy wykonywane na czas. Dodatkowe akcesoria w zestawie. Możliwość przetestowania i negocjacji ceny.</p>
+      <a href="https://www.finn.no/mobility/item/407654321" class="text-blue-600 underline mb-4 inline-block">Zobacz ogłoszenie</a>
 
-      <div class="slider mb-8">
-        <button class="arrow-btn arrow-left" aria-label="Poprzednie zdjęcie">&#10094;</button>
+      <!-- Slider for tab 5 -->
+      <div class="slider relative max-w-4xl mx-auto mt-4">
+        <button class="arrow-btn arrow-left">&lt;</button>
         <div class="slides">
-          <div class="slide"><img src="galeria/te300i2022/1.jpg" alt="TE 300i 2022 - zdjęcie 1" /></div>
-          <div class="slide"><img src="galeria/te300i2022/2.jpg" alt="TE 300i 2022 - zdjęcie 2" /></div>
-          <div class="slide"><img src="galeria/te300i2022/3.jpg" alt="TE 300i 2022 - zdjęcie 3" /></div>
+          <div class="slide"><img src="galeria/zakladka5/1.png" alt="Zdjęcie 1"></div>
+          <div class="slide"><img src="galeria/zakladka5/2.png" alt="Zdjęcie 2"></div>
+          <div class="slide"><img src="galeria/zakladka5/3.png" alt="Zdjęcie 3"></div>
+          <div class="slide"><img src="galeria/zakladka5/4.png" alt="Zdjęcie 4"></div>
+          <div class="slide"><img src="galeria/zakladka5/5.png" alt="Zdjęcie 5"></div>
+          <div class="slide"><img src="galeria/zakladka5/6.png" alt="Zdjęcie 6"></div>
+          <div class="slide"><img src="galeria/zakladka5/7.png" alt="Zdjęcie 7"></div>
+          <div class="slide"><img src="galeria/zakladka5/8.png" alt="Zdjęcie 8"></div>
+          <div class="slide"><img src="galeria/zakladka5/9.png" alt="Zdjęcie 9"></div>
+          <div class="slide"><img src="galeria/zakladka5/10.png" alt="Zdjęcie 10"></div>
+          <div class="slide"><img src="galeria/zakladka5/11.png" alt="Zdjęcie 11"></div>
         </div>
-        <button class="arrow-btn arrow-right" aria-label="Następne zdjęcie">&#10095;</button>
+        <button class="arrow-btn arrow-right">&gt;</button>
       </div>
-
-      <p><strong>Cena:</strong> 12900 zł (73 000 kr)</p>
     </div>
+
   </div>
 </body>
 </html>
