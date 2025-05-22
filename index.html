@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motocykle Husqvarna</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.style.display = 'none');
+      document.getElementById(tabId).style.display = 'block';
+    }
+    window.onload = () => showTab('tab1');
+  </script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-6xl mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">Motocykle Husqvarna na Sprzedaż</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+
+      <!-- Start: Tabs List -->
+      <div onclick="showTab('tab1')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="https://via.placeholder.com/300x200?text=FC250+2015" alt="Husqvarna FC 250 2015" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FC 250 (2015)</h2>
+        <p>7700zł - 45 000 kr</p>
+      </div>
+
+      <div onclick="showTab('tab2')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="https://via.placeholder.com/300x200?text=FC250+2018" alt="Husqvarna FC 250 2018" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FC 250 (2018)</h2>
+        <p>7700zł - 45 000 kr</p>
+      </div>
+
+      <div onclick="showTab('tab3')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="https://via.placeholder.com/300x200?text=FE250+2020" alt="Husqvarna FE 250 2020" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2020)</h2>
+        <p>12060zł - 70 631 kr</p>
+      </div>
+
+      <div onclick="showTab('tab4')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="https://via.placeholder.com/300x200?text=FE250+2017" alt="Husqvarna FE 250 2017" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2017)</h2>
+        <p>7700zł - 45 000 kr</p>
+      </div>
+
+      <div onclick="showTab('tab5')" class="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+        <img src="https://via.placeholder.com/300x200?text=FE250+2015" alt="Husqvarna FE 250 2015" class="rounded">
+        <h2 class="font-bold text-xl mt-2">FE 250 (2015)</h2>
+        <p>10355zł - 60 631 kr</p>
+      </div>
+      <!-- End: Tabs List -->
+    </div>
+
+    <!-- Start: Tab Content -->
+    <div id="tab1" class="tab-content hidden bg-white rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FC 250 (2015)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Nie</strong></p>
+      <p class="mb-4">Husqvarna FC 250<br>Dobry motocykl używany na torze – na sprzedaż. Regularnie wykonywano wymiany oleju i serwisy. Dodatkowe plastiki w zestawie. 2 tryby mocy. Elektryczny starter. Motocykl jest w dobrym stanie i był dobrze utrzymany. Skontaktuj się w razie pytań. Otwartość na oferty cenowe oraz możliwość zamiany na motocykl A2 lub skuter wodny Seadoo.</p>
+      <a href="https://www.finn.no/mobility/item/408344590" class="text-blue-600 underline">Zobacz ogłoszenie</a>
+    </div>
+
+    <div id="tab2" class="tab-content hidden bg-white rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FC 250 (2018)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Nie</strong></p>
+      <p class="mb-4">Dobrze utrzymany motocykl. Używany do zabawy i jazdy rekreacyjnej we własnym lesie i na pastwiskach. Myty po każdej jeździe. Wymiana oleju i filtra oleju co 5 godzin. Starannie dbano o wymianę filtra powietrza. Łatwy do odpalenia dzięki elektrycznemu starterowi i dobrze pracuje. Motocykl w całości, zadbany i w dobrym stanie. Zawsze przechowywany w garażu. Zamontowany sportowy układ wydechowy. Dodatkowy filtr powietrza w zestawie.</p>
+      <a href="https://www.finn.no/mobility/item/403541191" class="text-blue-600 underline">Zobacz ogłoszenie</a>
+    </div>
+
+    <div id="tab3" class="tab-content hidden bg-white rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2020)</h2>
+      <p class="mb-2">12060zł - 70 631 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Rozważam sprzedaż mojej Husqvarny FE 250 z 2021 roku i przesiadkę na Stark Varg. Motocykl był używany przez początkującego do jazdy enduro, ale w ostatnim roku stał głównie nieużywany. Przyczepa w cenie. Zadbany, niezawodny, gotowy do jazdy. Wiele ulepszeń i serwis wykonany w 2024 roku.</p>
+      <a href="https://www.finn.no/mobility/item/404987416" class="text-blue-600 underline">Zobacz ogłoszenie</a>
+    </div>
+
+    <div id="tab4" class="tab-content hidden bg-white rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2017)</h2>
+      <p class="mb-2">7700zł - 45 000 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Sprzedaję moją Husqvarnę FE 250 z powodu zbyt małego użytkowania. Kupiłem jesienią 2023, przejechałem tylko 2–3 godziny. 127 godzin łącznie. Dodatki: kierownica ProTaper, skid plate, siedzenie Guts, podnóżki ProPeRs. Plastiki jak nowe.</p>
+      <a href="https://www.finn.no/mobility/item/407920028" class="text-blue-600 underline">Zobacz ogłoszenie</a>
+    </div>
+
+    <div id="tab5" class="tab-content hidden bg-white rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold mb-2">Husqvarna FE 250 (2015)</h2>
+      <p class="mb-2">10355zł - 60 631 kr</p>
+      <p class="mb-2">Homologacja: <strong>Tak</strong></p>
+      <p class="mb-4">Nowe opony crossowe i supermoto. Nowy akumulator. Pełna moc. Mało używany. Serwis zimą: olej, zawory. Gotowy do jazdy. Zadzwoń do Ole: 97946683.</p>
+      <a href="https://www.finn.no/mobility/item/408123787?ci=1" class="text-blue-600 underline">Zobacz ogłoszenie</a>
+    </div>
+    <!-- End: Tab Content -->
+  </div>
+</body>
+</html>
