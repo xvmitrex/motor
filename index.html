@@ -77,7 +77,7 @@
         const btnNext = slider.querySelector('.arrow-right');
 
         function updateSlider() {
-          slidesContainer.style.transform = translateX(-${currentIndex * 100}%);
+          slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
           // Reset zoom on slide change
           slides.forEach(slide => {
             const img = slide.querySelector('img');
